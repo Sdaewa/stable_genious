@@ -14,7 +14,6 @@ async function getQuote() {
         const data = await response.json();
         console.log(data)
         messageText.innerHTML = data.message;
-        // authorText.innerText = data.quoteText;
 
     } catch (error) {
         alert(error)
