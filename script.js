@@ -12,7 +12,8 @@ async function getQuote() {
         const response = await fetch(API);
         const data = await response.json();
         console.log(data)
-        messageText.innerHTML = data.message;
+        messageText.innerText = data.message;
+        authorText.innerText = ' - Donald J Trump';
         if (data.message.length > 120) {
             messageText.classList.add('long-quote');
         } else {
@@ -26,7 +27,8 @@ async function getQuote() {
 
 function tweetQuote() {
     const quote = messageText.innerText;
-    const twitterURL = `https: //twitter.com/intent/tweet?text=${quote}`;
+    const author = authorText.innerText;
+    const twitterURL = `https://twitter.com/intent/tweet?text=${quote} ${author}`;
     window.open(twitterURL, '_blank');
 }
 
