@@ -3,9 +3,11 @@ const messageText = document.getElementById('message');
 const authorText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
+const loader = document.getElementById('loader');
 
 
 async function getQuote() {
+    loading();
     const API = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
 
     try {
@@ -19,11 +21,24 @@ async function getQuote() {
         } else {
             messageText.classList.remove('long-quote');
         }
+
+        complete();
     } catch (error) {
         alert(error)
     }
 }
 
+function loading() {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+function complete() {
+    if (!loader.hidden) {
+        quoteContainer.hidden = false;
+        loader.hidden = true;
+    }
+}
 
 function tweetQuote() {
     const quote = messageText.innerText;
