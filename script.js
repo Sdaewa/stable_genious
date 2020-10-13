@@ -5,7 +5,6 @@ const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 
 
-
 async function getQuote() {
     const API = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
 
@@ -14,9 +13,24 @@ async function getQuote() {
         const data = await response.json();
         console.log(data)
         messageText.innerHTML = data.message;
-
+        if (data.message.length > 120) {
+            messageText.classList.add('long-quote');
+        } else {
+            messageText.classList.remove('long-quote');
+        }
     } catch (error) {
         alert(error)
     }
 }
+
+
+function tweetQuote() {
+    const quote = messageText.innerText;
+    const twitterURL = `https: //twitter.com/intent/tweet?text=${quote}`;
+    window.open(twitterURL, '_blank');
+}
+
+newQuoteBtn.addEventListener('click', getQuote);
+twitterBtn.addEventListener('click', tweetQuote);
+
 getQuote();
