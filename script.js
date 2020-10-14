@@ -45,7 +45,7 @@ function complete() {
 
 function tweetQuote() {
     const quote = messageText.innerText;
-    const author = '- Donald J Trump';
+    const author = 'Donald J Trump';
     const twitterURL = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
     window.open(twitterURL, '_blank');
 }

@@ -24,7 +24,7 @@
      max-width: 900px;
      padding: 20px 30px;
      border-radius: 10px;
-     margin-top: 200px;
+     margin-top: 300px;
      background-color: rgba(255, 255, 255, 0.4);
      box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.2);
  }
@@ -32,26 +32,26 @@
  .image-container {
      width: auto;
      margin-bottom: 500px;
-     max-width: 900px;
+     max-width: 600px;
      padding: 20px 30px;
      border-radius: 10px;
      position: absolute;
  }
 
- .png {
-     font-size: large;
+ .img {
+     width: 250px;
  }
 
  .quote-text {
-     font-size: 2.75rem;
+     font-size: 2.5rem;
  }
 
  .long-quote {
-     font-size: 2rem;
+     font-size: 1.75rem;
  }
 
  .fa-quote-left {
-     font-size: 4rem;
+     font-size: 3rem;
  }
 
  .quote-author {
@@ -126,6 +126,14 @@
  @media screen and (max-width:1000px) {
      .quote-container {
          margin: auto 10px;
+     }
+
+     .image-container {
+         margin-bottom: 800px;
+     }
+
+     .img {
+         width: 150px;
      }
 
      .quote-text {
