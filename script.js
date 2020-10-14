@@ -13,7 +13,7 @@ async function getQuote() {
     try {
         const response = await fetch(API);
         const data = await response.json();
-        console.log(data)
+        // console.log(data)
         messageText.innerText = data.message;
         authorText.innerText = ' - Donald J Trump';
         if (data.message.length > 120) {
@@ -37,7 +37,7 @@ function complete() {
     if (!loader.hidden) {
         quoteContainer.hidden = false;
         loader.hidden = true;
-    }
+    };
 }
 
 function tweetQuote() {
