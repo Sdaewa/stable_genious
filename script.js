@@ -14,10 +14,10 @@ async function getQuote() {
     try {
         const response = await fetch(API);
         const data = await response.json();
-        console.log(data)
+        console.log()
         messageText.innerText = data.value;
         date.innerText = new Date(data.appeared_at);
-        // authorText.innerText = data.embedded[1].name;
+        authorText.innerText = data._embedded.author[0].name;
         console.log(messageText)
         if (data.value.length > 120) {
             messageText.classList.add('long-quote');
