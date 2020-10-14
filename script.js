@@ -16,7 +16,7 @@ async function getQuote() {
         const data = await response.json();
         console.log()
         messageText.innerText = data.value;
-        date.innerText = new Date(data.appeared_at);
+        date.innerText = new Date(data.appeared_at).toDateString();
         authorText.innerText = data._embedded.author[0].name;
         console.log(messageText)
         if (data.value.length > 120) {
@@ -46,7 +46,7 @@ function complete() {
 function tweetQuote() {
     const quote = messageText.innerText;
     const author = authorText.innerText;
-    const twitterURL = `https://twitter.com/intent/tweet?text=${quote} ${author}`;
+    const twitterURL = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
     window.open(twitterURL, '_blank');
 }
 
