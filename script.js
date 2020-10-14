@@ -4,19 +4,22 @@ const authorText = document.getElementById('author');
 const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
+const date = document.getElementById('date');
 
 
 async function getQuote() {
     loading();
-    const API = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
+    const API = 'https://tronalddump.io/random/quote';
 
     try {
         const response = await fetch(API);
         const data = await response.json();
-        // console.log(data)
-        messageText.innerText = data.message;
-        authorText.innerText = ' - Donald J Trump';
-        if (data.message.length > 120) {
+        console.log(data)
+        messageText.innerText = data.value;
+        date.innerText = new Date(data.appeared_at);
+        // authorText.innerText = data.embedded[1].name;
+        console.log(messageText)
+        if (data.value.length > 120) {
             messageText.classList.add('long-quote');
         } else {
             messageText.classList.remove('long-quote');
