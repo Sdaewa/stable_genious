@@ -8,7 +8,7 @@ const date = document.getElementById('date');
 
 
 async function getQuote() {
-    loading();
+    loadingSpinner();
     const API = 'https://tronalddump.io/random/quote';
 
     try {
@@ -25,18 +25,18 @@ async function getQuote() {
             messageText.classList.remove('long-quote');
         }
 
-        complete();
+        completeSpinner();
     } catch (error) {
         alert(error)
     }
 }
 
-function loading() {
+function loadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-function complete() {
+function completeSpinner() {
     if (!loader.hidden) {
         quoteContainer.hidden = false;
         loader.hidden = true;
