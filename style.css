@@ -38,6 +38,10 @@
      position: absolute;
  }
 
+ .png {
+     font-size: large;
+ }
+
  .quote-text {
      font-size: 2.75rem;
  }

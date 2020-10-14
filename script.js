@@ -17,7 +17,7 @@ async function getQuote() {
         console.log()
         messageText.innerText = data.value;
         date.innerText = new Date(data.appeared_at).toDateString();
-        authorText.innerText = data._embedded.author[0].name;
+        // authorText.innerText = data._embedded.author[0].name;
         console.log(messageText)
         if (data.value.length > 120) {
             messageText.classList.add('long-quote');
@@ -45,7 +45,7 @@ function complete() {
 
 function tweetQuote() {
     const quote = messageText.innerText;
-    const author = authorText.innerText;
+    const author = '- Donald J Trump';
     const twitterURL = `https://twitter.com/intent/tweet?text=${quote} - ${author}`;
     window.open(twitterURL, '_blank');
 }
