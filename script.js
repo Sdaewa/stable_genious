@@ -6,6 +6,7 @@ const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 const date = document.getElementById('date');
 const sourceBtn = document.getElementById('source');
+const link = document.querySelector('.quote-text a');
 
 
 
@@ -16,7 +17,6 @@ async function getQuote() {
     try {
         const response = await fetch(API);
         const data = await response.json();
-        console.log(data.value)
         messageText.innerText = data.value;
         date.innerText = new Date(data.appeared_at).toDateString();
         source = data._embedded.source[0].url;
