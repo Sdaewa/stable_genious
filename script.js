@@ -5,6 +5,9 @@ const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 const date = document.getElementById('date');
+// const hyperlinkText = document.body.getAttribute('hyperlink');
+
+// console.log(hyperlinkText)
 
 
 async function getQuote() {
@@ -14,7 +17,7 @@ async function getQuote() {
     try {
         const response = await fetch(API);
         const data = await response.json();
-        console.log()
+        console.log(data.value)
         messageText.innerText = data.value;
         date.innerText = new Date(data.appeared_at).toDateString();
         // authorText.innerText = data._embedded.author[0].name;
@@ -27,8 +30,9 @@ async function getQuote() {
 
         completeSpinner();
     } catch (error) {
-        alert(error)
-    }
+        // alert(error);
+        getQuote();
+    };
 }
 
 function loadingSpinner() {
