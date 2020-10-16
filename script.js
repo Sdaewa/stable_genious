@@ -23,7 +23,8 @@ async function getQuote() {
         // ---tweet------------------------
         if (is_url(data.value)) {
             link.hidden = false;
-            messageText.innerText = data.value, link.href = hyperLink;
+            messageText.innerText = data.value.replace(hyperLink, ''), link.href = hyperLink;
+            link.innerText = hyperLink;
         } else {
             link.hidden = true;
             messageText.innerText = data.value;
@@ -46,17 +47,13 @@ async function getQuote() {
         console.log(error)
     };
 
-    function is_url(str) {
-        regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
-        return str.match(regexp);
-    }
-
-    // function removeUrlFromMessage(){
-
-    // }
 }
 
 
+function is_url(str) {
+    regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
+    return str.match(regexp);
+}
 
 function loadingSpinner() {
     loader.hidden = false;
