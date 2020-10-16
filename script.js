@@ -7,6 +7,7 @@ const loader = document.getElementById('loader');
 const date = document.getElementById('date');
 const sourceBtn = document.getElementById('source');
 const link = document.querySelector('.quote-text a');
+const showLink = document.getElementById('link')
 
 
 
@@ -17,15 +18,29 @@ async function getQuote() {
     try {
         const response = await fetch(API);
         const data = await response.json();
+
+        // ---tweet------------------------
         messageText.innerText = data.value;
-        if (is_url(data.value)) {
-            return console.log(messageText.innerText = data.value, hyperLink);
-        };
-        if (!is_url(data.value)) {
-            return console.log(messageText.innerText = data.value);
+
+        // ---URL extractor---
+        function is_url(str) {
+            regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
+            let hyperLink = str.match(regexp);
+            return link.setAttribute('href', hyperLink);
         }
+
+        if (is_url(data.value)) {
+            link.hidden = false;
+            messageText.innerText = data.value, hyperLink, link.hidden;
+        } else {
+            link.hidden = true;
+            messageText.innerText = data.value;
+        }
+        // ---date---
         date.innerText = new Date(data.appeared_at).toDateString();
         source = data._embedded.source[0].url;
+
+        // ---fonts---
         if (data.value.length > 120) {
             messageText.classList.add('long-quote');
         } else {
@@ -33,18 +48,10 @@ async function getQuote() {
         }
 
         completeSpinner();
-
     } catch (error) {
         // getQuote();
         alert(error)
     };
-
-
-    function is_url(str) {
-        regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
-        let hyperLink = str.match(regexp);
-        return hyperLink;
-    }
 }
 
 function loadingSpinner() {
