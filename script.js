@@ -7,8 +7,7 @@ const loader = document.getElementById('loader');
 const date = document.getElementById('date');
 const sourceBtn = document.getElementById('source');
 const link = document.getElementById('link');
-const linkBtn = document.querySelector('.quote-text a')
-
+const linkBtn = document.querySelector('.quote-text a');
 
 
 async function getQuote() {
@@ -28,7 +27,7 @@ async function getQuote() {
         } else {
             link.hidden = true;
             messageText.innerText = data.value;
-        }
+        };
         // ---date---
         date.innerText = new Date(data.appeared_at).toDateString();
         source = data._embedded.source[0].url;
@@ -38,17 +37,14 @@ async function getQuote() {
             messageText.classList.add('long-quote');
         } else {
             messageText.classList.remove('long-quote');
-        }
+        };
 
         completeSpinner();
+
     } catch (error) {
-        // getQuote();
-        alert(error)
-        console.log(error)
+        getQuote();
     };
-
 }
-
 
 function is_url(str) {
     regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
