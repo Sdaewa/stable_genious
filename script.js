@@ -33,7 +33,7 @@ async function getQuote() {
         source = data._embedded.source[0].url;
 
         // ---fonts---
-        if (data.value.length > 120) {
+        if (data.value.length > 100) {
             messageText.classList.add('long-quote');
         } else {
             messageText.classList.remove('long-quote');
