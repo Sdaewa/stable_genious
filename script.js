@@ -6,8 +6,8 @@ const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 const date = document.getElementById('date');
 const sourceBtn = document.getElementById('source');
-const link = document.querySelector('.quote-text a');
-const showLink = document.getElementById('link')
+const link = document.getElementById('link');
+const linkBtn = document.querySelector('.quote-text a')
 
 
 
@@ -18,20 +18,12 @@ async function getQuote() {
     try {
         const response = await fetch(API);
         const data = await response.json();
+        const hyperLink = is_url(data.value);
 
         // ---tweet------------------------
-        messageText.innerText = data.value;
-
-        // ---URL extractor---
-        function is_url(str) {
-            regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
-            let hyperLink = str.match(regexp);
-            return link.setAttribute('href', hyperLink);
-        }
-
         if (is_url(data.value)) {
             link.hidden = false;
-            messageText.innerText = data.value, hyperLink, link.hidden;
+            messageText.innerText = data.value, link.href = hyperLink;
         } else {
             link.hidden = true;
             messageText.innerText = data.value;
@@ -51,8 +43,20 @@ async function getQuote() {
     } catch (error) {
         // getQuote();
         alert(error)
+        console.log(error)
     };
+
+    function is_url(str) {
+        regexp = /([\w+]+\:\/\/)?()*[\w-]+[\.\:]\w+([\/\?\]?[\w-]+)*\/?/igm;
+        return str.match(regexp);
+    }
+
+    // function removeUrlFromMessage(){
+
+    // }
 }
+
+
 
 function loadingSpinner() {
     loader.hidden = false;
@@ -81,5 +85,6 @@ function tweetQuote() {
 newQuoteBtn.addEventListener('click', getQuote);
 twitterBtn.addEventListener('click', tweetQuote);
 sourceBtn.addEventListener('click', getSource);
+
 
 getQuote();
