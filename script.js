@@ -8,6 +8,7 @@ const date = document.getElementById('date');
 const sourceBtn = document.getElementById('source');
 const link = document.getElementById('link');
 const linkBtn = document.querySelector('.quote-text a');
+const imgTrump = document.getElementById('image-container');
 
 
 async function getQuote() {
@@ -53,6 +54,7 @@ function is_url(str) {
 
 function loadingSpinner() {
     loader.hidden = false;
+    imgTrump.hidden = true;
     quoteContainer.hidden = true;
 }
 
@@ -60,6 +62,7 @@ function completeSpinner() {
     if (!loader.hidden) {
         quoteContainer.hidden = false;
         loader.hidden = true;
+        imgTrump.hidden = false;
     };
 }
 
